@@ -83,7 +83,7 @@ def main():
         with open(os.path.join(DIR_PATH, 'nlp_{}.txt'.format(sjxx.split('.')[0].split('_')[1])), 'w',
                   encoding='utf-8') as f:
             for key, value in nlp_process_dict.items():
-                f.write('{} {}\n'.format(key, ','.join(value)))
+                f.write('{}###{}\n'.format(key, ','.join(value)))
 
     t2 = time.time()
     print('程序耗时{}秒'.format(round(t2 - t1, 3)))
