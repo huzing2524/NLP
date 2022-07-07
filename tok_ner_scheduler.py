@@ -165,7 +165,7 @@ def main():
 
     with open(os.path.join(DIR_PATH, 'nlp_{}.txt'.format(today)), 'w', encoding='utf-8') as f:
         for key, value in nlp_process_dict.items():
-            f.write('{} {}\n'.format(key, ','.join(value)))
+            f.write('{}###{}\n'.format(key, ','.join(value)))
 
     t2 = time.time()
     print('程序耗时{}秒'.format(round(t2 - t1, 3)))
@@ -174,10 +174,11 @@ def main():
 if __name__ == '__main__':
     # 使用APScheduler开启定时任务
     parser = argparse.ArgumentParser(description='对公商机系统，NLP命名实体识别提取公司名称和关键词')
-    parser.add_argument('--hour', type=int, help='开启定时任务，将处理当天的数据。指定该参数，该程序将于 每天 12时 运行')
-    parser.add_argument('--minute', type=int, help='开启定时任务，将处理当天的数据。指定该参数，该程序将于 每天 00分 运行')
+    parser.add_argument('--hour', type=str, help='开启定时任务，将处理当天的数据。指定该参数，该程序将于 每天 12时 运行')
+    parser.add_argument('--minute', type=str, help='开启定时任务，将处理当天的数据。指定该参数，该程序将于 每天 00分 运行')
     args = parser.parse_args()
-
+    
+    # parser.add_argument(type=int)，传入assert中的时、分为0，布尔值为False，assert抛出异常
     assert args.hour, '需要定时任务中的hour参数'
     assert args.minute, '需要定时任务中的minute参数'
 
